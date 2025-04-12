@@ -1,25 +1,75 @@
 :root {
-    /* Primary */
-    --scissors-gradient: hsl(39, 89%, 49%) to hsl(40, 84%, 53%);
-    --paper-gradient: hsl(230, 89%, 62%) to hsl(230, 89%, 65%);
-    --rock-gradient: hsl(349, 71%, 52%) to hsl(349, 70%, 56%);
-    --lizard-gradient: hsl(261, 73%, 60%) to hsl(261, 72%, 63%);
-    --cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
+  /* Primary */
+  --scissors-gradient: hsl(39, 89%, 49%) to hsl(40, 84%, 53%);
+  --paper-gradient: linear-gradient(to right, hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+  --rock-gradient: hsl(349, 71%, 52%) to hsl(349, 70%, 56%);
+  --lizard-gradient: hsl(261, 73%, 60%) to hsl(261, 72%, 63%);
+  --cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
 
-    /* Neutral */
-    --dark-text: hsl(229, 25%, 31%);
-    --score-text: hsl(229, 64%, 46%);
-    --header-outline: hsl(217, 16%, 45%);
+  /* Neutral */
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
 
-    /* Background */
-    --radial-gradient: hsl(214, 47%, 23%) to hsl(237, 49%, 15%);
+  /* Background */
+  --radial-gradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 }
-body{
-    display: grid;
-    container: body /inline-size;
-    max-width: 100svw;
-    min-height: 100svh;
-    margin: 0;
+
+@font-face {
+  font-family: 'Barlow_Semi_Condensed';
+  src: url(./fonts/Barlow_Semi_Condensed/BarlowSemiCondensed-Regular.ttf);
 }
-main{
+
+body {
+  display: grid;
+  container: body /inline-size;
+  max-width: 100svw;
+  min-height: 100svh;
+  margin: 0;
+  background: var(--radial-gradient);
+  font-family: 'Barlow_Semi_Condensed';
+  align-content: baseline;
+  justify-items: center;
+  color: var(--dark-text);
+}
+
+header {
+  box-sizing: border-box;
+  height: 150px;
+  padding: 25px;
+  container: header / inline-size;
+  width: 100%;
+  max-width: 1440px;
+}
+
+main {
+  display: grid;
+  min-height: calc(100svh - 150px);
+  place-items: center;
+}
+
+button {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  box-sizing: border-box;
+  padding: 20%;
+  position: relative;
+  border: 0;
+}
+
+button::before {
+  content: "";
+  border-radius: 50%;
+  height: 150px;
+  background-image: var(--paper-gradient);
+  position: absolute;
+  inset: -20px;
+  padding: 20px;
+  z-index: -1;
+}
+
+img {
+  width: 100%;
+  height: 100%;
 }
