@@ -1,10 +1,10 @@
 :root {
   /* Primary */
-  --scissors-gradient: hsl(39, 89%, 49%) to hsl(40, 84%, 53%);
+  --scissors-gradient: linear-gradient(to right,hsl(39, 89%, 49%) , hsl(40, 84%, 53%));
   --paper-gradient: linear-gradient(to right, hsl(230, 89%, 62%), hsl(230, 89%, 65%));
-  --rock-gradient: hsl(349, 71%, 52%) to hsl(349, 70%, 56%);
-  --lizard-gradient: hsl(261, 73%, 60%) to hsl(261, 72%, 63%);
-  --cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
+  --rock-gradient:linear-gradient(to right, hsl(349, 71%, 52%) , hsl(349, 70%, 56%));
+  --lizard-gradient: linear-gradient(to right,hsl(261, 73%, 60%) , hsl(261, 72%, 63%));
+  --cyan:linear-gradient(to right, hsl(189, 59%, 53%) , hsl(189, 58%, 57%));
 
   /* Neutral */
   --dark-text: hsl(229, 25%, 31%);
@@ -13,6 +13,8 @@
 
   /* Background */
   --radial-gradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  /*Misc*/
+  --game-button-gradient:var(--scissors-gradient);
 }
 
 @font-face {
@@ -31,6 +33,9 @@ body {
   align-content: baseline;
   justify-items: center;
   color: var(--dark-text);
+  z-index: -2;
+  position: relative;
+  font-weight: 600;
 }
 
 header {
@@ -45,31 +50,12 @@ header {
 main {
   display: grid;
   min-height: calc(100svh - 150px);
+  width: 100svw;
+  max-width: 1440px;
+  max-height: 1152px;
   place-items: center;
+  container: main  / inline-size;
 }
-
-button {
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
-  box-sizing: border-box;
-  padding: 20%;
-  position: relative;
-  border: 0;
-}
-
-button::before {
-  content: "";
-  border-radius: 50%;
-  height: 150px;
-  background-image: var(--paper-gradient);
-  position: absolute;
-  inset: -20px;
-  padding: 20px;
-  z-index: -1;
-}
-
-img {
-  width: 100%;
-  height: 100%;
+div[class="attribution"]{
+  color:white;
 }
