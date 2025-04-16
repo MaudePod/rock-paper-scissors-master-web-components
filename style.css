@@ -1,10 +1,10 @@
 :root {
   /* Primary */
-  --scissors-gradient: linear-gradient(to right,hsl(39, 89%, 49%) , hsl(40, 84%, 53%));
+  --scissors-gradient: linear-gradient(to right, hsl(39, 89%, 49%), hsl(40, 84%, 53%));
   --paper-gradient: linear-gradient(to right, hsl(230, 89%, 62%), hsl(230, 89%, 65%));
-  --rock-gradient:linear-gradient(to right, hsl(349, 71%, 52%) , hsl(349, 70%, 56%));
-  --lizard-gradient: linear-gradient(to right,hsl(261, 73%, 60%) , hsl(261, 72%, 63%));
-  --cyan:linear-gradient(to right, hsl(189, 59%, 53%) , hsl(189, 58%, 57%));
+  --rock-gradient: linear-gradient(to right, hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+  --lizard-gradient: linear-gradient(to right, hsl(261, 73%, 60%), hsl(261, 72%, 63%));
+  --cyan: linear-gradient(to right, hsl(189, 59%, 53%), hsl(189, 58%, 57%));
 
   /* Neutral */
   --dark-text: hsl(229, 25%, 31%);
@@ -14,7 +14,7 @@
   /* Background */
   --radial-gradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   /*Misc*/
-  --game-button-gradient:var(--scissors-gradient);
+  --game-button-gradient: var(--scissors-gradient);
 }
 
 @font-face {
@@ -49,13 +49,58 @@ header {
 
 main {
   display: grid;
-  min-height: calc(100svh - 150px);
+  /* min-height: calc(100svh - 150px); */
   width: 100svw;
   max-width: 1440px;
   max-height: 1152px;
   place-items: center;
-  container: main  / inline-size;
+  container: main / inline-size;
+  position: relative;
 }
-div[class="attribution"]{
-  color:white;
+
+button[id="show-rules"] {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  border: 2px solid var(--header-outline);
+  background-color: transparent;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  border-radius: 10px;
+}
+
+section[id="rules"] {
+  height: 60%;
+  width: 40%;
+  border-color: transparent;
+}
+section[class="rules-intro"] {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10%;
+  align-items: center;
+}
+section[class="rules-intro"] span{
+font-size: 2.5em;
+font-weight: 700;
+}
+
+section[id="rules"]:popover-open {
+  display: grid;
+  place-items: center;
+}
+
+svg[id="rules-svg"] {
+  width: 80%;
+  height: 80%;
+}
+
+div[class="attribution"] {
+  color: white;
 }

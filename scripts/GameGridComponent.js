@@ -21,3 +21,4 @@ export default class GameGridComponent extends HTMLElement {
 if (!customElements.get("game-grid-component")) {
   customElements.define("game-grid-component", GameGridComponent);
 }
+

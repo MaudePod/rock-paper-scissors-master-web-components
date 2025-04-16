@@ -87,7 +87,8 @@ export default class GameButtonComponent extends HTMLElement {
   ) {
     const shadowRoot = this.attachShadow({ mode: "open" })
     shadowRoot.appendChild(template.content.cloneNode(true));
-       
+    this.shadowRoot.querySelector("button").setAttribute('aria-label',this.getAttribute('type'))
+    this.shadowRoot.querySelector("img").setAttribute('alt',this.getAttribute('type'))
     this.shadowRoot.querySelector("button").addEventListener('click', () => {
       window.dispatchEvent(new CustomEvent("picked move", { detail: { type: this.getAttribute('type') } }));
     })
@@ -102,3 +103,4 @@ export default class GameButtonComponent extends HTMLElement {
 if (!customElements.get("game-button-component")) {
   customElements.define("game-button-component", GameButtonComponent);
 }
+
