@@ -20,8 +20,6 @@ export default class GameStatusComponent extends HTMLElement {
       match.runMatch(rules);
     });
     window.addEventListener('score updated', (event) => {
-      console.log("update")
-
       this.updateDisplay();
     });
 

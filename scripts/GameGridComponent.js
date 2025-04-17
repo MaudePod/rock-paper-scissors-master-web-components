@@ -9,7 +9,7 @@ export default class GameGridComponent extends HTMLElement {
   ) {
     
     window.addEventListener('picked move', (event) => {
-      this.setAttribute('player-finished',true);
+      this.setAttribute('match-ended',true);
     });
   }
 

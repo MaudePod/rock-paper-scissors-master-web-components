@@ -91,6 +91,7 @@ export default class GameButtonComponent extends HTMLElement {
     this.shadowRoot.querySelector("img").setAttribute('alt',this.getAttribute('type'))
     this.shadowRoot.querySelector("button").addEventListener('click', () => {
       window.dispatchEvent(new CustomEvent("picked move", { detail: { type: this.getAttribute('type') } }));
+   this.setAttribute('player-pick',true);
     })
   }
 

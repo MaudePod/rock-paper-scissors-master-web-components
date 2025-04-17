@@ -114,6 +114,21 @@
             display: contents;
           }
 
+          :host([match-ended="true"]) {
+            section[class="game-grid"] {
+              grid-template-columns: 1fr 1fr;
+            }
+
+            game-button-component {
+              position: static;
+              display: none;
+            }
+
+            game-button-component[player-pick="true"] {
+              display: grid;
+            }
+          }
+
           section[class="game-grid"] {
             display: grid;
             height: 750px;
@@ -185,7 +200,7 @@
               opacity=".25" />
           </svg>
         </button>
-  
+
       </section>
       <svg id="rules-svg" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 340 330">
         <defs>
