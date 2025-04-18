@@ -15,6 +15,8 @@
   --radial-gradient: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   /*Misc*/
   --game-button-gradient: var(--scissors-gradient);
+  --game-button-height:150px;
+  --game-button-width:150px;
 }
 
 @font-face {
@@ -56,49 +58,6 @@ main {
   place-items: center;
   container: main / inline-size;
   position: relative;
-}
-
-button[id="show-rules"] {
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
-  border: 2px solid var(--header-outline);
-  background-color: transparent;
-  padding: 10px 20px;
-  color: white;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 1.2em;
-  letter-spacing: 2px;
-  border-radius: 10px;
-}
-
-section[id="rules"] {
-  height: 60%;
-  width: 40%;
-  border-color: transparent;
-}
-section[class="rules-intro"] {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0 10%;
-  align-items: center;
-}
-section[class="rules-intro"] span{
-font-size: 2.5em;
-font-weight: 700;
-}
-
-section[id="rules"]:popover-open {
-  display: grid;
-  place-items: center;
-}
-
-svg[id="rules-svg"] {
-  width: 80%;
-  height: 80%;
 }
 
 div[class="attribution"] {

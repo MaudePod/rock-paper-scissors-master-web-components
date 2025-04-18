@@ -6,41 +6,53 @@ export class Match {
         'scissors',
         'rock'
     ];
-
-    runMatch=(rulesForFirstPick, secondPick = "")=>{
-        const result=this.getMatchResult(rulesForFirstPick);
-        this.updateScore(result);
+    result = Object.freeze({
+        player: 1,
+        cpu: -1,
+        draw: 0
     }
-    getMatchResult(rulesForFirstPick, secondPick = "") {
-        console.log(secondPick)
+    )
+    runMatch = (rulesForFirstPick, secondPick = "") => {
         if (secondPick == "") {
             secondPick = this.getRandomCpuPick();
+            window.dispatchEvent(new CustomEvent("cpu picked move", {
+                detail: { type: secondPick }
+            }));
         }
+        const result = this.getMatchResult(rulesForFirstPick, secondPick);
+        this.updateScore(result);
+        this.announceWinner(result);
+    }
+    getMatchResult(rulesForFirstPick, secondPick) {
         if (rulesForFirstPick.beats.find((element) => element == secondPick)) {
-            console.log('lost to ',secondPick)
-            return 1;
+            return this.result.player;
         }
         if (rulesForFirstPick.losesTo.find((element) => element == secondPick)) {
-            return -1;
+            return this.result.cpu;
         }
-        return 0;
+        return this.result.draw;
     }
     getRandomCpuPick = () => {
         let randomIndex = Math.floor(Math.random() * this.possibleMoves.length)
         const cpuPick = this.possibleMoves[randomIndex];
-        console.log(this.possibleMoves);
-        console.log('cpuPick',cpuPick)
         return cpuPick;
     }
-    updateScore=(matchResult)=>{
-        if(localStorage.getItem('score')){
-          const score=Number(localStorage.getItem('score'));
-          localStorage.setItem('score',score+matchResult)
-          
-         }else{
-          localStorage.setItem('score',matchResult)
-         }
-         window.dispatchEvent(new CustomEvent("score updated", { } ));
-       }
+    updateScore = (matchResult) => {
+        if (localStorage.getItem('score')) {
+            const score = Number(localStorage.getItem('score'));
+            localStorage.setItem('score', score + matchResult)
+
+        } else {
+            localStorage.setItem('score', matchResult)
+        }
+        window.dispatchEvent(new CustomEvent("score updated", {}));
+    }
+    announceWinner = (result) => {
+        const winner = Object.keys(this.result).find((value) => this.result[value] == result);
+        window.dispatchEvent(new CustomEvent("winner announced", {
+            detail: { winner: winner }
+        }));
+
+    }
 }
 
