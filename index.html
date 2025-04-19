@@ -81,6 +81,8 @@
 
           section[class="title"] {
             letter-spacing: 2px;
+            color: var(--score-text);
+            font-weight: 700;
           }
 
           section[class="score"] {
@@ -91,6 +93,10 @@
           @container(inline-size < 1000px) {
             section[class="game-status"] {
               width: 100%;
+            }
+
+            section[class="score"] {
+              font-size: 2em;
             }
           }
         </style>
@@ -163,6 +169,19 @@
               top: -100px;
               text-wrap: nowrap;
             }
+
+            game-button-component[player-pick="true"]::after {
+              content: "";
+              padding: var(--game-button-height);
+              height: calc(var(--game-button-height)* 2);
+              width: calc(var(--game-button-height) * 2);
+              border-radius: 50%;
+              background: repeating-radial-gradient(hsl(250, 100%, 100%, 0.01), hsla(250, 100%, 100%, 0.05) 15%, hsl(0, 0%, 100%) 15%);
+              position: fixed;
+              top: 250px;
+              z-index: -2;
+              transition: ease-in-out 2s;
+            }
           }
 
           :host([match-ended="true"][winner="cpu"]) {
@@ -174,6 +193,19 @@
               position: absolute;
               top: -100px;
               text-wrap: nowrap;
+            }
+
+            game-button-component[cpu-pick="true"]::after {
+              content: "";
+              padding: var(--game-button-height);
+              height: calc(var(--game-button-height)* 2);
+              width: calc(var(--game-button-height) * 2);
+              border-radius: 50%;
+              background: repeating-radial-gradient(hsl(250, 100%, 100%, 0.01), hsla(250, 100%, 100%, 0.05) 15%, hsl(0, 0%, 100%) 15%);
+              position: fixed;
+              top: 250px;
+              z-index: -2;
+              transition: ease-in-out 2s;
             }
           }
 
@@ -188,6 +220,7 @@
               text-wrap: nowrap;
             }
           }
+
 
           button[id="new-match"] {
             display: none;
@@ -246,6 +279,99 @@
           game-button-component[type="spock"] {
             left: 235px;
             top: 220px;
+          }
+
+          @starting-style {
+            :host([match-ended="true"][winner="cpu"]) {
+              game-button-component[cpu-pick="true"]::after {
+                opacity: 0;
+              }
+            }
+
+            :host([match-ended="true"][winner="player"]) {
+              game-button-component[player-pick="true"]::after {
+                opacity: 0;
+              }
+            }
+          }
+
+          @container(inline-size < 1000px) {
+            section[class="game-grid"] {
+              height: 100%;
+              width: 100%;
+              background-size: 250px;
+            }
+
+            :host([match-ended="true"]) {
+              section[class="game-grid"] {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                background-image: unset;
+              }
+
+
+              button[id="new-match"] {
+                display: grid;
+                width: 60%;
+                justify-self: center;
+                height: 50px;
+                align-self: end;
+                background-color: white;
+                place-items: center;
+                font-size: 1.5em;
+                border-radius: 10px;
+                font-weight: 700;
+                color: var(--header-outline);
+                cursor: pointer;
+                position: relative;
+                grid-row: 2;
+                grid-column: span 2;
+              }
+            }
+
+            button[id="new-match"]::before {
+              font-size: 1.5em;
+            }
+
+            game-button-component[type="scissors"] {
+              left: 160px;
+              top: 20px;
+            }
+
+            game-button-component[type="paper"] {
+              right: 50px;
+              top: 95px;
+            }
+
+            game-button-component[type="spock"] {
+              left: 50px;
+              top: 95px;
+            }
+
+            game-button-component[type="rock"] {
+              bottom: 20px;
+              right: 235px;
+            }
+
+            game-button-component[type="lizard"] {
+              bottom: 20px;
+              left: 235px;
+            }
+
+            :host([match-ended="true"][winner="player"]) {
+
+              game-button-component[player-pick="true"]::after {
+                position: fixed;
+                top: 158px;
+              }
+            }
+
+            :host([match-ended="true"][winner="cpu"]) {
+              game-button-component[cpu-pick="true"]::after {
+                position: fixed;
+                top: 158px;
+              }
+            }
           }
         </style>
       </template>
@@ -495,10 +621,45 @@
             border-color: transparent;
             cursor: pointer;
           }
+
+          @container(inline-size < 1000px) {
+            button[id="show-rules"] {
+              position: unset;
+            }
+
+            section[id="rules"]:popover-open {
+              height: 100%;
+              width: 100%;
+              grid-template-areas: "title"
+                "img"
+                "close";
+              justify-content: center;
+            }
+
+            section[class="rules-intro"] {
+              display: contents;
+            }
+
+            section[class="rules-intro"] span {
+              grid-area: title;
+            }
+
+            svg[id="rules-svg"] {
+              grid-area: img;
+              height: auto;
+              width: 100%;
+              place-self: end;
+            }
+
+            button[id="close"] {
+              grid-area: button;
+              grid-column: unset;
+            }
+
+          }
         </style>
       </template>
     </show-rules>
-
   </main>
 
   <div class="attribution">
