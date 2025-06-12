@@ -38,12 +38,12 @@ export class Match {
         return cpuPick;
     }
     updateScore = (matchResult) => {
-        if (localStorage.getItem('score')) {
-            const score = Number(localStorage.getItem('score'));
-            localStorage.setItem('score', score + matchResult)
+        if (sessionStorage.getItem('score')) {
+            const score = Number(sessionStorage.getItem('score'));
+            sessionStorage.setItem('score', score + matchResult)
 
         } else {
-            localStorage.setItem('score', matchResult)
+            sessionStorage.setItem('score', matchResult)
         }
         window.dispatchEvent(new CustomEvent("score updated", {}));
     }

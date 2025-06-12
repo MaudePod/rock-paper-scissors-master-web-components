@@ -8,8 +8,8 @@ export default class GameStatusComponent extends HTMLElement {
   }
   connectedCallback(
   ) {
-    if (!localStorage.getItem('score')) {
-      localStorage.setItem('score', 0);
+    if (!sessionStorage.getItem('score')) {
+      sessionStorage.setItem('score', 0);
     }
     this.updateDisplay();
     window.addEventListener('picked move', (event) => {
@@ -26,7 +26,7 @@ export default class GameStatusComponent extends HTMLElement {
   }
 
   updateDisplay = () => {
-    const score = localStorage.getItem('score');
+    const score = sessionStorage.getItem('score');
     this.shadowRoot.querySelector("section[class='score']").innerHTML = score;
 
   }
